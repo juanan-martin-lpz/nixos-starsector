@@ -19,9 +19,22 @@ let
 in pkgs.stdenv.mkDerivation {
   name = "starsector-shell";
 
-
-
   shellHook = ''
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/java
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/ControlPanel
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/java_vm
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/javaws
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/jcontrol
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/keytool
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/orbd
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/pack200
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/policytool
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/rmid
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/rmiregistry
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/servertool
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/tnameserv
+   patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" jre_linux/bin/unpack200
+
    export JRE_HOME=jre_linux/bin
    export JAVA_HOME=jre_linux/bin
    export CLASSPATH=jre_linux/lib
